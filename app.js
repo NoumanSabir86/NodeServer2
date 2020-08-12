@@ -4,7 +4,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
-var indexRouter = require("./routes/index");
+
 var usersRouter = require("./routes/api/users");
 var productsRouter = require("./routes/api/products");
 var config = require("config");
@@ -42,10 +42,13 @@ app.use(function (err, req, res, next) {
 });
 
 mongoose
-  .connect(config.get("db"), {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    "mongodb+srv://nouman:loveisislam12@cluster0.1ywqx.mongodb.net/mongoDB0?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => console.log("Connected to Mongo...."))
   .catch((error) => console.log(error.message));
 module.exports = app;
